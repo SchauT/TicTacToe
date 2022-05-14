@@ -2,7 +2,7 @@
     <div class="board">
         <div v-for="x in 3" :key="x" class="row">
             <div v-for="y in 3" :key="y" class="square" v-on:click="place(x,y)">
-            </div>
+            O</div>
         </div>
     </div>
 </template>
@@ -19,7 +19,7 @@
         },
         methods: {
             getboard(x,y){
-                return { Board[x][y] }
+                return //{ Board[x][y] }
             },
             place(x,y){
                 this.Board[x][y] = 'X'
@@ -37,8 +37,8 @@
     grid-row: 3;
 }
 .square {
-  background: #fff;
-  border: 1px solid #999;
+  background: #212121;
+  border: 1px solid #fff;
   float: left;
   font-size: 70px;
   font-weight: bold;
@@ -49,5 +49,6 @@
   padding: 0;
   text-align: center;
   width: 100px;
+  color: #E55E5B;
 }
 </style>
