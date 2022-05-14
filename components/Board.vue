@@ -1,41 +1,40 @@
 <template>
-    <div class="board">
+<div>
+    <div>
+    <h1>Now Playing : {{ player }}</h1>
+    </div>
+    <div class="container">
         <div v-for="x in 3" :key="x" class="row">
-            <div v-for="y in 3" :key="y" class="square" v-on:click="place(x,y)">
-            O</div>
+            <button v-for="y in 3" :key="y" class="square" v-on:click="count++,place(x-1,y-1)">
+                {{ board[x-1][y-1] }}
+            </button>
         </div>
     </div>
+</div>
 </template>
 
 <script>
-    export default {
+    export default{
         data() {
-            return {
-                Board :[
-                    ['','',''],
-                    ['','',''],
-                    ['','','']]
+            return{
+                player : 'O',
+                
+                board : [['','',''],['','',''],['','','']],
+
+                count : 1
             }
         },
         methods: {
-            getboard(x,y){
-                return //{ Board[x][y] }
+            place(x,y) {
+                this.board[x][y] = this.player
+                this.player = this.player === 'O' ? 'X':'O'
             },
-            place(x,y){
-                this.Board[x][y] = 'X'
-            },
+            getPlace(x,y) {return this.board[x][y]},
         }
     }
-
 </script>
 
 <style scoped>
-.board {
-    margin: 50px;
-    display: grid;
-    grid-column: 3;
-    grid-row: 3;
-}
 .square {
   background: #212121;
   border: 1px solid #fff;

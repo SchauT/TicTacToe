@@ -4,7 +4,7 @@
             <h1 class="title">LOCAL</h1>
             <nuxt-link to="/" class="button">Home</nuxt-link>
         </div>
-        <Board />
+        <Board class="board"/>
     </div>
 </template>
 
@@ -15,5 +15,11 @@ export default { components: { Board } }
 </script>
 
 <style scoped>
+    .title {
+        margin: 20px;
+    }
+    .board {
+        margin-top: 50px;
+    }
 
 </style>

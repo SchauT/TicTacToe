@@ -28,5 +28,7 @@ export default {
   margin: 10% 0;
   min-height: 200px;
   align-items: center;
+
+  border: 1px solid #fff;
 }
 </style>

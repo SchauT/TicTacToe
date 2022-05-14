@@ -3,7 +3,7 @@
     <h1 v-if="error.statusCode === 404">404 Page not found</h1>
     <h1 v-else>An error occurred</h1>
     <div>
-      <NuxtLink to="/">Home page</NuxtLink>
+      <NuxtLink to="/" class="button">Home page</NuxtLink>
     </div>
   </div>
 </template>
@@ -21,5 +21,8 @@ export default {
 	height: 80vh;
 	display: flex;
 	padding-top: 60px;
+}
+.button {
+  margin: 20px;
 }
 </style>
