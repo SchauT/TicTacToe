@@ -1,7 +1,8 @@
 <template>
 <div>
     <div>
-    <h1>Now Playing : {{ player }}</h1>
+        <h1 v-if="winner" class="winner">Winner : {{ winner }}</h1>
+        <h1 v-else class="player">Now Playing : {{ player }}</h1>
     </div>
     <div class="container">
         <div v-for="x in 3" :key="x" class="row">
@@ -17,6 +18,9 @@
     export default{
         data() {
             return{
+
+                winner : null,
+
                 player : 'O',
                 
                 board : [['','',''],['','',''],['','','']],
@@ -25,11 +29,12 @@
             }
         },
         methods: {
+            
             place(x,y) {
                 this.board[x][y] = this.player
                 this.player = this.player === 'O' ? 'X':'O'
             },
-            getPlace(x,y) {return this.board[x][y]},
+            getPlace(x,y) {return this.board[x][y]}
         }
     }
 </script>
@@ -49,5 +54,9 @@
   text-align: center;
   width: 100px;
   color: #E55E5B;
+}
+
+.player {
+    color: #fff;
 }
 </style>
