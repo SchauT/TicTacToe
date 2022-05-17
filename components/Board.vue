@@ -6,11 +6,12 @@
     </div>
     <div class="container">
         <div v-for="x in 3" :key="x" class="row">
-            <button v-for="y in 3" :key="y" class="square" v-on:click="count++,place(x-1,y-1)">
+            <button v-for="y in 3" :key="y" class="square" v-on:click="place(x-1,y-1)">
                 {{ board[x-1][y-1] }}
             </button>
         </div>
     </div>
+    <h1 v-if="board[0][0] === board[0][1] === board[0][2]" class="test">YAYY</h1>
 </div>
 </template>
 
@@ -25,16 +26,46 @@
                 
                 board : [['','',''],['','',''],['','','']],
 
-                count : 1
+                count : 0
             }
         },
         methods: {
             
             place(x,y) {
-                this.board[x][y] = this.player
-                this.player = this.player === 'O' ? 'X':'O'
+                if(this.winner === null && this.board[x][y] === ''){
+                    this.board[x][y] = this.player
+                    this.player = this.player === 'O' ? 'X':'O'
+                    this.count++
+
+                    this.winner = this.getWinner()
+                }
+                
             },
-            getPlace(x,y) {return this.board[x][y]}
+
+            getPlace(x,y) {return this.board[x][y]},
+            
+            getWinner() {
+                for(let i = 0; i < 2; i++){
+                    for(let j = 0; j < 3; j++){
+                        if (i){
+                            if(this.board[j][0] === this.board[j][1] === this.board[j][2]){
+                                return this.board[j][0]
+                            }
+                        }
+                        else{
+                           if(this.board[0][j] === this.board[1][j] === this.board[2][j]){
+                                return this.board[0][j]
+                            } 
+                        }
+                    }
+
+                }
+                //TEST DIAGONALS
+                if(this.count === 9){
+                    return "Draw !"
+                }
+                return null
+            }
         }
     }
 </script>
@@ -57,6 +88,12 @@
 }
 
 .player {
+    color: #fff;
+}
+.winner {
+    color: #fff;
+}
+.test {
     color: #fff;
 }
 </style>
