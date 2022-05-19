@@ -1,7 +1,10 @@
 <template>
 <div>
     <div>
-        <h1 v-if="winner" class="winner">Winner : {{ winner }}</h1>
+        <div v-if="winner">
+            <h1 class="winner">Winner : {{ winner }}</h1>
+            <button class="button" v-on:click="reset()">Reset</button>
+        </div>
         <h1 v-else class="player">Now Playing : {{ player }}</h1>
     </div>
     <div class="container">
@@ -11,7 +14,6 @@
             </button>
         </div>
     </div>
-    <h1 v-if="board[0][0] === board[0][1] === board[0][2]" class="test">YAYY</h1>
 </div>
 </template>
 
@@ -48,23 +50,33 @@
                 for(let i = 0; i < 2; i++){
                     for(let j = 0; j < 3; j++){
                         if (i){
-                            if(this.board[j][0] === this.board[j][1] === this.board[j][2]){
+                            if(this.board[j][0] != '' && this.board[j][0] === this.board[j][1] && this.board[j][0] === this.board[j][2]){
                                 return this.board[j][0]
                             }
                         }
                         else{
-                           if(this.board[0][j] === this.board[1][j] === this.board[2][j]){
+                           if(this.board[0][j] != '' && this.board[0][j] === this.board[1][j] && this.board[0][j] === this.board[2][j]){
                                 return this.board[0][j]
                             } 
                         }
                     }
-
                 }
+                
                 //TEST DIAGONALS
+                if((this.board[0][0] != '' && this.board[0][0] === this.board[1][1] && this.board[0][0] === this.board[2][2]) || (this.board[0][2] != '' && this.board[0][2] === this.board[1][1] && this.board[0][2] === this.board[2][0])){
+                    return this.board[1][1]
+                }
+                
                 if(this.count === 9){
                     return "Draw !"
                 }
                 return null
+            },
+
+            reset() {
+                this.winner = null
+                this.board = [['','',''],['','',''],['','','']]
+                this.count = 0
             }
         }
     }
