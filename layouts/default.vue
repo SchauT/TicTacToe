@@ -47,24 +47,18 @@ body {
   margin: 10% 0;
   min-height: 200px;
   align-items: center;
-  
-  border: 1px solid #fff;
 }
 
 .title {
   font-size: xx-large;
   color: #E55E5B;
   margin-bottom: 0;
-
-  border: 1px solid #fff;
 }
 
 .title p {
   font-size: large;
   color: white;
   margin-top: 0;
-
-  border: 1px solid #fff;
 }
 
 .button {
